@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 import dj_database_url
 DATABASES = {
     'default':  dj_database_url.config(
-        default='postgres://egbwtxrweejhvo:3da1a4463767a057284f5aed874406dd70552541b1d3c3f7c773f3efc13ca75e@ec2-52-23-86-208.compute-1.amazonaws.com:5432/d969sgcit7psdd'
+        default='postgres://gtteyhewrtyuaz:c218d5b3a89bdb42955cba88234d38927e686ce13aedb1e39f5f31031492965a@ec2-3-215-83-17.compute-1.amazonaws.com:5432/d8u4kddgvv3t5t'
     )   
 }
 
