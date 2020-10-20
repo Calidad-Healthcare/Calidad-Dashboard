@@ -25,7 +25,7 @@ SECRET_KEY = '8oubb3bc^-ass-5bl_nm!pm-)2wym0oyxt-9qk^szj3vt(yj0^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +46,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+        'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,7 +65,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR,'templates'),
+            os.path.join(BASE_DIR,'templates/'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -81,11 +85,11 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default':  dj_database_url.config(
+        default='postgres://egbwtxrweejhvo:3da1a4463767a057284f5aed874406dd70552541b1d3c3f7c773f3efc13ca75e@ec2-52-23-86-208.compute-1.amazonaws.com:5432/d969sgcit7psdd'
+    )   
 }
 
 
@@ -127,8 +131,12 @@ ACCOUNT_LOGOUT_ON_GET = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+
+STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static'),
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
