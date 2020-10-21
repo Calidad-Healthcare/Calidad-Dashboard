@@ -21,13 +21,11 @@ lazy-object-proxy==1.4.3
 MarkupPy==1.14
 mccabe==0.6.1
 networkx==2.5
-nltk==3.5
 numpy==1.19.1
 oauthlib==3.1.0
 Pillow==7.2.0
 psycopg2==2.8.5
 python3-openid==3.2.0
-pytube==9.6.0
 pytz==2020.1
 PyYAML==5.3.1
 requests==2.24.0
